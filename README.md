@@ -45,6 +45,11 @@ docker run -e GITHUB_TOKEN=<your_token> -p 8080:8080 reposcorer
 Access the API at: `http://localhost:8080/api/v1/repos`
 
 ---
+## Swagger UI
+
+You can access the Swagger UI to explore the API endpoints at:
+
+http://localhost:8080/webjars/swagger-ui/index.html
 
 ## 🌐 API Usage
 
@@ -138,7 +143,18 @@ Weights (`wStars`, `wForks`, `wRecency`) are normalized and configurable in `app
 
 ---
 
-4. **Configuration & Secrets**  
+4. **Security**
+   Currently, this project does not include authentication, authorization, or other security features.  
+   - Future improvements could include:
+     - **JWT-based authentication** to secure API endpoints(sample project -https://github.com/NahushaG/rest-api-showcase/tree/main/jwt).
+     - Adding **Spring Security** for authentication and role-based access control(sample project -https://github.com/NahushaG/rest-api-showcase/tree/main/security-basic).
+     - Enabling **HTTPS** for secure communication.
+     - Adding **rate limiting** or **API key validation**.
+     - Implementing **input validation** and **XSS/CSRF protection**.
+
+---
+
+5. **Configuration & Secrets**  
    Configuration currently resides in plain `application.properties` or environment files.
   - Move sensitive credentials (like the GitHub token) to **environment variables** or **Docker secrets**.
   - Update `application.yml` to reference secure variables:
@@ -150,7 +166,7 @@ Weights (`wStars`, `wForks`, `wRecency`) are normalized and configurable in `app
 
 ---
 
-5. **Metrics & Observability**  
+6. **Metrics & Observability**  
    The service currently lacks built-in observability.
   - Integrate **Micrometer** with **Prometheus** to expose metrics such as:
     - GitHub API latency and error rates
@@ -160,7 +176,7 @@ Weights (`wStars`, `wForks`, `wRecency`) are normalized and configurable in `app
 
 ---
 
-6. **Resilience**  
+7. **Resilience**  
    The current design does not include resilience mechanisms for external API failures.
   - Add **retries**, **circuit breakers**, and **fallbacks** using **Resilience4j** or **Spring Cloud Circuit Breaker**.
   - Implement **graceful degradation** (e.g., returning cached or partial results if GitHub is unavailable).
