@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: reposcorer
+server:
+  port: 8080
+
+github:
+  baseUrl: https://api.github.com
+
+repoScorer:
+  weights:
+    stars: 0.5
+    forks: 0.3
+    recency: 0.2
+  recencyHalfLifeDays: 30
+  cacheSeconds: 60
+  perPage: 100
